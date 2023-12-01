@@ -15,7 +15,12 @@ lean_lib «AoC2023» where
 --   -- Remove this line if you do not need such functionality.
 --   supportInterpreter := true
 
+-- Run with `lake exe day1_1 AoC2023/Day1/input.txt`
 lean_exe day1_1 where
   root := `AoC2023.Day1.Part1
+
+-- Run with `lake exe day1_2 AoC2023/Day1/input.txt`
+lean_exe day1_2 where
+  root := `AoC2023.Day1.Part2
 
 require std from git "https://github.com/leanprover/std4" @ "main"
