@@ -1,13 +1,6 @@
-import Lean
-import Std.Tactic.GuardMsgs
+import AoC2023.Util
 
-def Char.digit? (c : Char) : Option Nat :=
-  if 48 ≤ c.val && c.val ≤ 57 then
-    some (c.val - 48).toNat
-  else
-    none
-
-namespace Day1
+namespace Day1_1
 
 /-- Collect the digits appearing in `s`. -/
 def getDigits (s : String) : Array Nat :=
@@ -27,7 +20,7 @@ def getCalibration (s : String) : Nat :=
 /-- info: 49 -/
 #guard_msgs in #eval getCalibration "znzdrj4526fjtszspfour9pk"
 
-def _root_.main (args : List String) : IO Unit := do
+def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let lines ← IO.FS.lines filename
   let sum := lines.foldl (init := 0) (· + getCalibration ·)
