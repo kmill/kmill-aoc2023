@@ -1,5 +1,5 @@
 # kmill-aoc2023
-Advent of Code 2023
+Advent of Code 2023 in Lean 4
 
 Each day's programs are compiled into the `aoc` executable.
 
