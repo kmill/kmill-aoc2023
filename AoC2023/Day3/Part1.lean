@@ -1,6 +1,6 @@
 import AoC2023.Util
 
-namespace Day3
+namespace Day3_1
 
 /-- A number on the schematic -/
 structure Num where
@@ -68,7 +68,7 @@ def State.read1 (s : State) (c : Char) : State :=
   else
     s |>.commit |>.addSymbol |>.incP
 
-def main1 (args : List String) : IO Unit := do
+def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let lines ← IO.FS.lines filename
   let mut s : State := {}
@@ -84,10 +84,4 @@ def main1 (args : List String) : IO Unit := do
           unless seen.contains num do
             seen := seen.insert num
             sum := sum + num.n
-  IO.println s!"{sum}"
-
-def main2 (args : List String) : IO Unit := do
-  let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
-  let lines ← IO.FS.lines filename
-  let mut sum := 0
   IO.println s!"{sum}"
