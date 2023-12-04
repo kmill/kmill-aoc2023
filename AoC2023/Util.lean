@@ -13,3 +13,14 @@ def Char.digit? (c : Char) : Option Nat :=
 #guard_msgs in #eval '9'.digit?
 /-- info: none -/
 #guard_msgs in #eval 'a'.digit?
+
+namespace Lean.Parsec
+
+def digit' : Parsec Nat := do
+  let c ← digit
+  return (c.val - 48).toNat
+
+def nat : Parsec Nat := do
+  return (← many1 digit').foldl (init := 0) (fun a d => 10 * a + d)
+
+end Lean.Parsec
