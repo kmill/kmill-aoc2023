@@ -1,3 +1,4 @@
+import AoC2023.Util
 import AoC2023.Day1.Part1
 import AoC2023.Day1.Part2
 import AoC2023.Day2.Part1
@@ -14,21 +15,9 @@ import AoC2023.Day6.Part2
 /-!
 Rather than modifying the lakefile (which causes a rebuild of std),
 each program is added to the `aoc` executable.
+
+The `aoc_dispatch%` elaborator creates a dispatcher to every function with the `@[aoc_main cmdName]` attribute.
 -/
 
 def main (args : List String) : IO Unit := do
-  let cmd :: args := args | throw <| IO.userError "first argument must be a command name"
-  match cmd with
-  | "day1_1" => Day1_1.main args
-  | "day1_2" => Day1_2.main args
-  | "day2_1" => Day2_1.main args
-  | "day2_2" => Day2_2.main args
-  | "day3_1" => Day3_1.main args
-  | "day3_2" => Day3_2.main args
-  | "day4_1" => Day4_1.main args
-  | "day4_2" => Day4_2.main args
-  | "day5_1" => Day5_1.main args
-  | "day5_2" => Day5_2.main args
-  | "day6_1" => Day6_1.main args
-  | "day6_2" => Day6_2.main args
-  | _ => throw <| IO.userError "first argument is not a recognized command"
+  aoc_dispatch% args

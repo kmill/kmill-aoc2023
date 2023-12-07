@@ -18,6 +18,7 @@ def parseLine : Parsec (Nat × Array Nat × Array Nat) := do
 def numWinning (winning numbersHave : Array Nat) : Nat :=
   numbersHave |>.filter (winning.contains ·) |>.size
 
+@[aoc_main day4_2]
 def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let lines ← IO.FS.lines filename

@@ -215,6 +215,7 @@ humidity-to-location map:
 #guard_msgs in
 #eval process exampleInput --(debug := true)
 
+@[aoc_main day5_2]
 def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let input ← IO.FS.readFile filename

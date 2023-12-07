@@ -4,6 +4,7 @@ namespace Day2_1
 
 open Day2
 
+@[aoc_main day2_1]
 def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let lines ← IO.FS.lines filename

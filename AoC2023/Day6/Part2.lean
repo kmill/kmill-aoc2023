@@ -51,6 +51,7 @@ Distance:  9  40  200"
 /-- info: 71503 -/
 #guard_msgs in #eval process exampleInput
 
+@[aoc_main day6_2]
 def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let input ← IO.FS.readFile filename

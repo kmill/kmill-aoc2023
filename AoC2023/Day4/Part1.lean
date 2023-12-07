@@ -22,6 +22,7 @@ def scoreLine (winning numbersHave : Array Nat) : Nat := Id.run do
       score := max 1 (2 * score)
   return score
 
+@[aoc_main day4_1]
 def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let lines ← IO.FS.lines filename

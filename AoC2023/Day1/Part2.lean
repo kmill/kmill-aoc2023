@@ -52,6 +52,7 @@ def getCalibration (s : String) : Nat := (getCalibration? s).getD 0
 /-- info: 49 -/
 #guard_msgs in #eval getCalibration "znzdrj4526fjtszspfour9pk"
 
+@[aoc_main day1_2]
 def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let lines ← IO.FS.lines filename

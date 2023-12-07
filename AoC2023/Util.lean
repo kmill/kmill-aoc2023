@@ -1,5 +1,6 @@
 import Lean
 import Std
+import AoC2023.CmdAttr
 
 def Char.digit? (c : Char) : Option Nat :=
   if 48 ≤ c.val && c.val ≤ 57 then

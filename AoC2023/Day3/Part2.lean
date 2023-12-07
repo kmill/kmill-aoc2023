@@ -68,6 +68,7 @@ def State.read1 (s : State) (c : Char) : State :=
   else
     s |>.commit |>.addSymbol c |>.incP
 
+@[aoc_main day3_2]
 def main (args : List String) : IO Unit := do
   let [filename] := args | throw <| IO.userError "Expecting one argument, the input file"
   let lines ← IO.FS.lines filename
