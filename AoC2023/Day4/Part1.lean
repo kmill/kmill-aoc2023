@@ -15,11 +15,6 @@ def parseLine : Parsec (Nat × Array Nat × Array Nat) := do
   ws *> eof
   return (n, winning, numbersHave)
 
-def runParseLine (s : String) : Except String (Nat × Array Nat × Array Nat) :=
-  match parseLine s.mkIterator with
-  | .success _ res => .ok res
-  | .error it err  => .error s!"offset {repr it.i.byteIdx}: {err}"
-
 def scoreLine (winning numbersHave : Array Nat) : Nat := Id.run do
   let mut score := 0
   for n in numbersHave do
@@ -32,7 +27,7 @@ def main (args : List String) : IO Unit := do
   let lines ← IO.FS.lines filename
   let mut sum := 0
   for line in lines do
-    let (n, winning, numbersHave) ← IO.ofExcept <| runParseLine line
+    let (n, winning, numbersHave) ← IO.ofExcept <| parseLine.run line
     --dbg_trace "Game {n} {winning} {numbersHave}"
     sum := sum + scoreLine winning numbersHave
   IO.println s!"{sum}"

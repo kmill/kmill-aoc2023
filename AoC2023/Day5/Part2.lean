@@ -165,13 +165,8 @@ def parseAlmanac : Parsec (Mapping × Array (String × String × Mapping)) := do
   ws *> eof
   return (seeds, almanac)
 
-def runParseAlmanac (s : String) : Except String (Mapping × Array (String × String × Mapping)) :=
-  match parseAlmanac s.mkIterator with
-  | .success _ res => .ok res
-  | .error it err  => .error s!"offset {repr it.i.byteIdx}: {err}"
-
 def process (input : String) (debug : Bool := false) : IO Unit := do
-  let (seeds, almanac) ← IO.ofExcept <| runParseAlmanac input
+  let (seeds, almanac) ← IO.ofExcept <| parseAlmanac.run input
   if debug then
     IO.println s!"seeds = {repr seeds}\nalmanac = {almanac.map repr}"
   let mut mapping := seeds

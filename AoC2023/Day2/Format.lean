@@ -75,9 +75,5 @@ def parseLine : Parsec (Nat × Array Colors) := do
   ws
   skipString ":"
   let cs ← parseColorList
+  ws <* eof
   return (n, cs)
-
-def runParseLine (s : String) : Except String (Nat × Array Colors) :=
-  match (parseLine <* ws <* eof) s.mkIterator with
-  | Parsec.ParseResult.success _ res => Except.ok res
-  | Parsec.ParseResult.error it err  => Except.error s!"offset {repr it.i.byteIdx}: {err}"

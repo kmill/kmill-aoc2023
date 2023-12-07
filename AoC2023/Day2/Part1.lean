@@ -9,7 +9,7 @@ def main (args : List String) : IO Unit := do
   let lines ← IO.FS.lines filename
   let mut sum := 0
   for line in lines do
-    let (n, cs) ← IO.ofExcept <| runParseLine line
+    let (n, cs) ← IO.ofExcept <| parseLine.run line
     let m := Array.foldl (init := {}) max cs
     if m.r ≤ 12 ∧ m.g ≤ 13 ∧ m.b ≤ 14 then
       sum := sum + n

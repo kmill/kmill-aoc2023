@@ -15,11 +15,6 @@ def parseLine : Parsec (Nat × Array Nat × Array Nat) := do
   ws *> eof
   return (n, winning, numbersHave)
 
-def runParseLine (s : String) : Except String (Nat × Array Nat × Array Nat) :=
-  match parseLine s.mkIterator with
-  | .success _ res => .ok res
-  | .error it err  => .error s!"offset {repr it.i.byteIdx}: {err}"
-
 def numWinning (winning numbersHave : Array Nat) : Nat :=
   numbersHave |>.filter (winning.contains ·) |>.size
 
@@ -28,7 +23,7 @@ def main (args : List String) : IO Unit := do
   let lines ← IO.FS.lines filename
   let mut games : Array Nat := #[]
   for line in lines do
-    let (n, winning, numbersHave) ← IO.ofExcept <| runParseLine line
+    let (n, winning, numbersHave) ← IO.ofExcept <| parseLine.run line
     unless n = games.size + 1 do throw <| IO.userError "game numbers not 1, 2, 3, ..."
     let k := numWinning winning numbersHave
     games := games.push k
