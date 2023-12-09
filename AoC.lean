@@ -16,6 +16,7 @@ import AoC2023.Day7.Part2
 import AoC2023.Day8.Part1
 import AoC2023.Day8.Part2
 import AoC2023.Day9.Part1
+import AoC2023.Day9.Part2
 
 /-!
 Rather than modifying the lakefile (which causes a rebuild of std),
