@@ -80,10 +80,6 @@ partial def process (input : String) : IO Unit := do
       for q in g.neighbors p do
         queue := queue.push (q, dist + 1)
 
-  --IO.println s!"{g}"
-
-  --IO.println s!"start = {init}"
-
 def exampleInput :=
 ".....
 .S-7.
