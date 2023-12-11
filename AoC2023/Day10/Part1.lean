@@ -2,6 +2,14 @@ import AoC2023.Util
 
 namespace Day10_1
 
+/-!
+Strategy:
+
+Do a breadth-first search, and as soon as we visit a cell twice with equal distances to that cell we know we
+have formed a loop. "Equal distances" is taking advantage of the fact that loops on a grid have even length,
+which isn't essential to this but it does make the condition a little simpler.
+-/
+
 abbrev Grid := Array (Array Char)
 
 def Grid.get (g : Grid) (p : Int × Int) : Char :=
